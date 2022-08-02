@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="table-responsive"></div>
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th scope="col" width="10%">#</th>
+                <th scope="col" width="20%">Title</th>
+                <th scope="col" width="30%">Description</th>
+                <th scope="col" width="50%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in companies %}
+            <tr>
+                <th scope="row">{{ comp.company.id }}</th>
+                <td>{{ comp.company.title }}</td>
+                <td>{{ comp.company.discription }}</td>
+                <td>
+                    <a class="btn btn-danger" href="/admin/relations/delete/{{ comp.relation_id }}" role="button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

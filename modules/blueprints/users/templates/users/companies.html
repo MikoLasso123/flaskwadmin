@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% for comp in companies %}
+        <div class="col-sm-3">
+            <div class="card text-center w-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comp.title }}</h5>
+                    <p class="card-text">{{ comp.discription }}</p>
+                    <a href="/users/companies/{{ comp.id }}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

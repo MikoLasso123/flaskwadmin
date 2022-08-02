@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+    <h3>Edit {{ company.title }}</h3>
+
+    <form method="POST" action="">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" name="title" value="{{ company.title }}">
+        </div>
+        <div class="mb-3">
+          <label for="discription" class="form-label">Discription</label>
+          <input type="text" class="form-control" name="discription" id="discription" value="{{ company.discription }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock content %}

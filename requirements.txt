@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+flask-bcrypt
+Flask-User==0.6.21
+faker
+email_validator

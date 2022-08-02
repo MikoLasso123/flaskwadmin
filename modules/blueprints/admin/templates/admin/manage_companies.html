@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <a class="btn btn-primary" href="/admin/companies/manage/new" role="button">Add new company</a>
+</div>
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in companies %}
+            <tr>
+                <th scope="row">{{ comp.id }}</th>
+                <td>{{ comp.title }}</td>
+                <td>{{ comp.discription }}</td>
+                <td>
+                    <a class="btn btn-primary" href="/admin/companies/manage/update/{{ comp.id }}" role="button">Edit</a>
+                    <a class="btn btn-danger" href="/admin/companies/manage/delete/{{ comp.id }}" role="button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

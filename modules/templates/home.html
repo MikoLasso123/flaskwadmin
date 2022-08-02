@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if call_or_get(current_user.is_authenticated) %}
+<div class="container">
+    <h3>Welcome {{ current_user.username }}.</h3>
+    <h4>Feel free to explore around.</h4>
+</div>
+
+{% else %}
+<div class="container">
+    <h3>You must sign in to use this website</h3>
+</div>
+{% endif %}
+
+{% endblock content %}

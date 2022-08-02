@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <button type="button" value="saveRelation" class="btn btn-primary" onclick="saveRelation()">Save relation</button>
+    <button type="button" value="selectAll" class="btn btn-primary" onclick="checkAll()">Select All</button>
+    <button type="button" value="deselectAll" class="btn btn-secondary" onclick="uncheckAll()">Clear</button>
+
+    <div class="table-responsive"></div>
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th scope="col" width="5%"><input class="form-check-input" type="checkbox"></th>
+                <th scope="col" width="5%">#</th>
+                <th scope="col" width="40%">Title</th>
+                <th scope="col" width="50%">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in companies %}
+            <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" name="company" value="{{ comp.id }}"></th>
+                <td>{{ comp.id }}</td>
+                <td>{{ comp.title }}</td>
+                <td>{{ comp.discription }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    // Select all check boxes : Setting the checked property to true in checkAll() function
+    function checkAll() {
+        var items = document.getElementsByName('company');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox')
+                items[i].checked = true;
+        }
+    }
+    // Clear all check boxes : Setting the checked property to false in uncheckAll() function
+    function uncheckAll() {
+        var items = document.getElementsByName('company');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox')
+                items[i].checked = false;
+        }
+    }
+    function saveRelation() {
+        var allChecked = document.querySelectorAll('input[name=company]:checked');
+        var results = Array.from(allChecked).map(checkbox => checkbox.value);
+        console.log(results);
+        xhr = new XMLHttpRequest();
+        xhr.open("POST", "/admin/relations/save_relation/{{ user_id }}", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        xhr.send(results);
+        }
+</script>
+{% endblock content %}
